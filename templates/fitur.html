@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fitur</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="antialiased overflow-x-hidden">
+    <main class="flex">
+        <aside class="fixed left-0 top-0 h-screen bg-blue-700 py-7 px-7">
+            <h1 class="text-white text-4xl font-extrabold uppercase">Dental</h1>
+            <h1 class="text-white text-4xl font-extrabold uppercase mb-14">
+                Education
+            </h1>
+            <ul class="flex flex-col text-white gap-7">
+                <li>
+                    <a href="" class="flex items-center gap-2.5 text-xl text-zinc-200 hover:text-white">
+                        <ion-icon name="home"></ion-icon>
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="/fitur" class="flex items-center gap-2.5 text-xl text-white font-bold">
+                        <ion-icon name="apps"></ion-icon>
+                        Fitur
+                    </a>
+                </li>
+                <li>
+                    <a href="/profile" class="flex items-center gap-2.5 text-xl text-zinc-200 hover:text-white">
+                        <ion-icon name="person-circle"></ion-icon>
+                        Profile
+                    </a>
+                </li>
+                <li>
+                    <a href="/about" class="flex items-center gap-2.5 text-xl text-zinc-200 hover:text-white">
+                        <ion-icon name="information-circle"></ion-icon>
+                        About Us
+                    </a>
+                </li>
+                <li>
+                    <button type="button" id="btnLogout" class="flex items-center gap-2.5 text-xl text-zinc-200 hover:text-white">
+                        <ion-icon name="exit"></ion-icon>
+                        Exit
+                    </button>
+                </li>
+            </ul>
+            <button type="button" id="btnBackward" class="absolute bottom-7 left-7 flex items-center gap-2.5 text-xl text-zinc-200 hover:text-white">
+        <ion-icon name="chevron-back-circle" class="my-auto"></ion-icon>
+      </button>
+      <button type="button" id="btnForward" class="absolute bottom-7 right-7 flex items-center gap-2.5 text-xl text-zinc-200 hover:text-white">
+        <ion-icon name="chevron-forward-circle" class="my-auto"></ion-icon>
+      </button>
+        </aside>
+        <section class="ml-64 p-10 w-full flex justify-center items-center">
+            <div class="w-full max-w-lg mt-5">
+                <h1 class="text-5xl text-center font-extrabold uppercase text-blue-800 mb-7">
+                    Fitur
+                </h1>
+                <div class="w-full grid grid-cols-1 p-3 gap-7 mb-7">
+                    <div>
+                        <a href="/repeat-paper" class="flex justify-center">
+                            <button
+                                class="w-1/2 uppercase bg-blue-800 py-3 font-bold text-white rounded-lg hover:bg-blue-900 btn-repeat">Repeat
+                                Paper</button>
+                        </a>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-5">
+                    <a href="/anatomy-mark" class="flex justify-center">
+                        <button
+                            class="w-full uppercase bg-blue-800 py-3 font-bold text-white rounded-lg hover:bg-blue-900 btn-anatomy">Anatomy
+                            Mark</button>
+                    </a>
+                    <a href="/pathology-mark" class="flex justify-center">
+                        <button
+                            class="w-full uppercase bg-blue-800 py-3 font-bold text-white rounded-lg hover:bg-blue-900">PATHOLOGY
+                            Mark</button>
+                    </a>
+                    <a href="/physiology-mark" class="flex justify-center">
+                        <button
+                            class="w-full uppercase bg-blue-800 py-3 font-bold text-white rounded-lg hover:bg-blue-900">Physiology
+                            Mark</button>
+                    </a>
+                    <a href="/microbiology-mark" class="flex justify-center">
+                        <button
+                            class="w-full uppercase bg-blue-800 py-3 font-bold text-white rounded-lg hover:bg-blue-900">MICROBIOLOGY
+                            Mark</button>
+                    </a>
+                    <a href="/biochemistry-mark" class="flex justify-center">
+                        <button
+                            class="w-full uppercase bg-blue-800 py-3 font-bold text-white rounded-lg hover:bg-blue-900">Biochemistry
+                            Mark</button>
+                    </a>
+                    <a href="/pharmacology-mark" class="flex justify-center">
+                        <button
+                            class="w-full uppercase bg-blue-800 py-3 font-bold text-white rounded-lg hover:bg-blue-900">PHARMACOLOGY
+                            Mark</button>
+                    </a>
+                    <a href="/oralbiology-mark" class="flex justify-center">
+                        <button
+                            class="w-full uppercase bg-blue-800 py-3 font-bold text-white rounded-lg hover:bg-blue-900">Oral
+                            Biology Mark</button>
+                    </a>
+                    <a href="/dental-material-science" class="flex justify-center">
+                        <button
+                            class="w-full uppercase bg-blue-800 py-3 font-bold text-white rounded-lg hover:bg-blue-900">DENTAL MATERIAL SCIENCE</button>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script>
+        const btnRepeat = document.querySelector(".btn-repeat")
+        const btnAnatomy = document.querySelector("btn-anatomy")
+
+        btnRepeat.addEventListener("click", function(e) {
+            e.preventDefault()
+            const uriParam = new URL(window.location.href)
+            const name = uriParam.searchParams.get("id")
+            window.location.href = `/repeat-paper?id=${name}`
+
+        })
+        btnAnatomy.addEventListener("click", function(e) {
+            e.preventDefault()
+            const uriParam = new URL(window.location.href)
+            const name = uriParam.searchParams.get("id")
+            window.location.href = `/anatomy-mark?id=${name}`
+
+        })
+
+    </script>
+</body>
+
+</html>

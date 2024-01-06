@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="antialiased overflow-x-hidden">
+    <main class="flex">
+        <aside class="fixed left-0 top-0 h-screen bg-blue-700 py-7 px-7">
+            <h1 class="text-white text-4xl font-extrabold uppercase">Dental</h1>
+            <h1 class="text-white text-4xl font-extrabold uppercase mb-14">
+                Education
+            </h1>
+            <ul class="flex flex-col text-white gap-7">
+                <li>
+                    <a href="" class="flex items-center gap-2.5 text-xl text-zinc-200 hover:text-white">
+                        <ion-icon name="home"></ion-icon>
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="/fitur" class="flex items-center gap-2.5 text-xl text-zinc-200 hover:text-white">
+                        <ion-icon name="apps"></ion-icon>
+                        Fitur
+                    </a>
+                </li>
+                <li>
+                    <a href="/profile" class="flex items-center gap-2.5 text-xl text-white font-bold">
+                        <ion-icon name="person-circle"></ion-icon>
+                        Profile
+                    </a>
+                </li>
+                <li>
+                    <a href="/about" class="flex items-center gap-2.5 text-xl text-zinc-200 hover:text-white">
+                        <ion-icon name="information-circle"></ion-icon>
+                        About Us
+                    </a>
+                </li>
+                <li>
+                    <button type="button" id="btnLogout" class="flex items-center gap-2.5 text-xl text-zinc-200 hover:text-white">
+                        <ion-icon name="exit"></ion-icon>
+                        Exit
+                    </button>
+                </li>
+            </ul>
+            <button type="button" id="btnBackward" class="absolute bottom-7 left-7 flex items-center gap-2.5 text-xl text-zinc-200 hover:text-white">
+        <ion-icon name="chevron-back-circle" class="my-auto"></ion-icon>
+      </button>
+      <button type="button" id="btnForward" class="absolute bottom-7 right-7 flex items-center gap-2.5 text-xl text-zinc-200 hover:text-white">
+        <ion-icon name="chevron-forward-circle" class="my-auto"></ion-icon>
+      </button>
+        </aside>
+        <section class="ml-64 p-10 w-full">
+            <h1 class="text-4xl text-center font-extrabold uppercase text-blue-800 mb-2">Profile</h1>
+            <div class="w-full h-full flex justify-center items-center">
+                <div class="max-w-lg">
+                    <div class="p-3 w-full space-y-5">
+                        <div>
+                            <label for="idLecturer" class="text-lg font-semibold">ID Lecturer</label>
+                            <input type="text" value="{{ idLecturer }}" name="idLecturer" id="idLecturer" class="min-w-[28rem] w-full text-sm py-4 px-4 bg-zinc-200 rounded-lg" placeholder="Email">
+                        </div>
+                        <div>
+                            <label for="name" class="text-lg font-semibold">Name</label>
+                            <input type="text" value="{{ name }}" name="name" id="name" class="min-w-[28rem] w-full text-sm py-4 px-4 bg-zinc-200 rounded-lg" placeholder="Name">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

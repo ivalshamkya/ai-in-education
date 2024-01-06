@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Repeat Paper</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="antialiased overflow-x-hidden">
+    <main class="flex h-full">
+        <aside class="fixed left-0 top-0 h-screen bg-blue-700 py-7 px-7">
+            <h1 class="text-white text-4xl font-extrabold uppercase">Dental</h1>
+            <h1 class="text-white text-4xl font-extrabold uppercase mb-14">
+                Education
+            </h1>
+            <ul class="flex flex-col text-white gap-7">
+                <li>
+                    <a href="" class="flex items-center gap-2.5 text-xl text-zinc-200 hover:text-white">
+                        <ion-icon name="home"></ion-icon>
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="/fitur" class="flex items-center gap-2.5 text-xl text-zinc-200 hover:text-white">
+                        <ion-icon name="apps"></ion-icon>
+                        Fitur
+                    </a>
+                </li>
+                <li>
+                    <a href="/profile" class="flex items-center gap-2.5 text-xl text-zinc-200 hover:text-white">
+                        <ion-icon name="person-circle"></ion-icon>
+                        Profile
+                    </a>
+                </li>
+                <li>
+                    <a href="/about" class="flex items-center gap-2.5 text-xl text-zinc-200 hover:text-white">
+                        <ion-icon name="information-circle"></ion-icon>
+                        About Us
+                    </a>
+                </li>
+                <li>
+                    <button type="button" id="btnLogout" class="flex items-center gap-2.5 text-xl text-zinc-200 hover:text-white">
+                        <ion-icon name="exit"></ion-icon>
+                        Exit
+                    </button>
+                </li>
+            </ul>
+            <button type="button" id="btnBackward" class="absolute bottom-7 left-7 flex items-center gap-2.5 text-xl text-zinc-200 hover:text-white">
+        <ion-icon name="chevron-back-circle" class="my-auto"></ion-icon>
+      </button>
+      <button type="button" id="btnForward" class="absolute bottom-7 right-7 flex items-center gap-2.5 text-xl text-zinc-200 hover:text-white">
+        <ion-icon name="chevron-forward-circle" class="my-auto"></ion-icon>
+      </button>
+        </aside>
+        <section class="ml-64 p-10 w-full">
+            <h1 class="text-5xl text-center font-extrabold uppercase text-blue-800">
+                Repeat Paper
+            </h1>
+            <div class="w-full h-full flex justify-center items-center">
+                <div class="max-w-lg">
+                    <form class="p-3 w-full space-y-7">
+                        <input type="text" name="name"
+                            class="min-w-[28rem] w-full text-sm py-4 px-4 bg-zinc-200 rounded-full input-name " placeholder="Name"
+                            required />
+                        <input type="text" name="age"
+                            class="min-w-[28rem] w-full text-sm py-4 px-4 bg-zinc-200 rounded-full input-age" placeholder="Age"
+                            required />
+                        <input type="text" name="total_semester"
+                            class="min-w-[28rem] w-full text-sm py-4 px-4 bg-zinc-200 rounded-full input-totsem"
+                            placeholder="Total Semester" required />
+                        <input type="text" name="avg"
+                            class="min-w-[28rem] w-full text-sm py-4 px-4 bg-zinc-200 rounded-full input-avg"
+                            placeholder="Average GCPA" required />
+                        <input type="text" name="gcpa"
+                            class="min-w-[28rem] w-full text-sm py-4 px-4 bg-zinc-200 rounded-full input-final"
+                            placeholder="Final GCPA" required />
+                        <div class="flex justify-center">
+                            <button id="btn-submit" class="w-full bg-blue-800 py-3 font-bold text-white uppercase rounded-lg hover:bg-blue-900 btn-submit"  >
+                                Predict
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js" integrity="sha512-b94Z6431JyXY14iSXwgzeZurHHRNkLt9d6bAHt7BZT38eqV+GyngIi/tVye4jBKPYQ2lBdRs0glww4fmpuLRwA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        const inputName = document.querySelector('.input-name');
+        const inputAge = document.querySelector('.input-age');
+        const inputTotSem = document.querySelector('.input-totsem');
+        const inputAvg = document.querySelector('.input-avg');
+        const inputFinal = document.querySelector('.input-final');
+        const btnSubmit = document.querySelector('#btn-submit');
+    
+        const fetchResult = async () => {
+            try {
+                const result = await axios.post("{{ url_for('repeat_paper_predict') }}", {
+                    name: inputName.value,
+                    age: inputAge.value,
+                    total_semesters: inputTotSem.value,
+                    average_gpa: inputAvg.value,
+                    final_gpa: inputFinal.value
+                });
+                return result.data;
+            } catch (error) {
+                console.error("Error fetching result:", error.message);
+            }
+        };
+    
+        const saveData = async (data) => {
+            try {
+                const uriParam = new URL(window.location.href)
+                await axios.post("{{ url_for('repeat_paper_save') }}", {
+                    name: inputName.value,
+                    age: inputAge.value,
+                    total_semesters: inputTotSem.value,
+                    average_gpa: inputAvg.value,
+                    final_gpa: inputFinal.value,
+                    result: data.prediction
+                });
+
+                Swal.fire({
+                    icon: "success",
+                    title: "Success!",
+                    text: "Data saved successfully.",
+                    timer: 2000,
+                    timerProgressBar: true,
+                    showConfirmButton: false
+                }).then(() => {
+                    window.location.href = "/repeat-paper/result?id="+ name;
+                });
+            } catch (error) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Error saving data.",
+                    timer: 2000
+                });
+                console.error("Error saving data:", error.message);
+            }
+        };
+    
+        const handleSubmit = async (e) => {
+            e.preventDefault();
+    
+            if (!inputAge.value || !inputTotSem.value || !inputAvg.value || !inputFinal.value || !inputName.value) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Please fill in all fields!",
+                    timer: 2000
+                });
+                console.error("Please fill in all fields.");
+                return;
+            }
+    
+            const data = await fetchResult();
+            await saveData(data);
+        };
+    
+        btnSubmit.addEventListener("click", handleSubmit);
+    </script>
+    
+</body>
+
+</html>

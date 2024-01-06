@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="antialiased overflow-hidden">
+    <nav class="fixed z-50 top-0 w-full h-20 flex justify-between items-center px-5 md:px-10 bg-white">
+        <a href="/" class="flex justify-center items-center">
+            <img class="" src="/static/img/logo.png" alt="" width="77">
+        </a>
+        <ul class="flex gap-5 md:gap-10">
+            <!-- <li><a href="/" class="transition-all ease-linear duration-150 text-zinc-500 hover:text-blue-400">Home</a></li> -->
+            <li><a href="/login" class="transition-all ease-linear duration-150 text-blue-700 font-bold">Login</a></li>
+            <li><a href="/register"
+                    class="transition-all ease-linear duration-150 text-zinc-500 hover:text-blue-400">Registration</a>
+            </li>
+            <!-- <li><a href="/about" class="transition-all ease-linear duration-150 text-zinc-500 hover:text-blue-400">About
+                    Us</a></li> -->
+        </ul>
+    </nav>
+
+    <div class="relative w-full min-h-screen flex flex-col justify-center items-center">
+        <div class="max-w-2xl z-10">
+            <h1 class="w-full text-center text-4xl md:text-6xl uppercase text-blue-800 font-bold mb-10">Log in</h1>
+            <form action="/login" method="post" class="grid grid-cols-1 gap-5">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <div id="alert-2"
+                    class="flex items-center p-4 mb-4 text-red-800 rounded-lg bg-red-50"
+                    role="alert">
+                    <svg class="flex-shrink-0 w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                    </svg>
+                    <span class="sr-only">Info</span>
+                    <div class="ms-3 text-sm font-medium">
+                        {% for message in messages %}
+                            {{ message }}
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+                {% endwith %}
+                <input name="idLecturer" type="text"
+                    class="min-w-[28rem] w-full text-sm py-5 px-5 bg-zinc-200 rounded-lg" placeholder="ID Lecturer">
+                <div class="relative w-full">
+                    <input name="password" type="password" id="password"
+                        class="w-full text-sm py-5 pl-5 pr-12 bg-zinc-200 rounded-lg" placeholder="Password">
+                    <span id="btn-password" class="absolute h-full right-0 my-auto pr-5">
+                        <ion-icon name="eye-off" class="h-full text-xl text-zinc-500 hover:text-zinc-600"></ion-icon>
+                    </span>
+                </div>
+                <div class="flex justify-center">
+                    <button type="submit"
+                        class="w-full uppercase bg-blue-800 py-3 font-bold text-white rounded-lg hover:bg-blue-900">Log
+                        In</button>
+                </div>
+                <span class="text-blue-800 text-center">
+                    Don't have an account? <a href="/register" class="font-bold">Register</a>
+                </span>
+            </form>
+        </div>
+
+        <div class="absolute z-0 -left-14 top-24 w-28 h-28 rounded-full border-[11px] border-blue-800"></div>
+        <div
+            class="absolute z-0 -right-24 -bottom-24 w-72 h-72 md:w-96 md:h-96 rounded-full border-[35px] border-blue-800">
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script>
+        var SHOW_PASS = false;
+        $(document).ready(function () {
+            $('#btn-password').on('click', function () {
+                SHOW_PASS = !SHOW_PASS;
+                $('#password').attr('type', SHOW_PASS ? 'text' : 'password');
+                $('#btn-password ion-icon').attr('name', SHOW_PASS ? 'eye' : 'eye-off');
+            });
+        });
+    </script>
+</body>
+
+</html>

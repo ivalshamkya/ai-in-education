@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Result</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="antialiased overflow-x-hidden">
+    <main class="flex">
+        <aside class="fixed left-0 top-0 h-screen bg-blue-700 py-7 px-7">
+            <h1 class="text-white text-4xl font-extrabold uppercase">Dental</h1>
+            <h1 class="text-white text-4xl font-extrabold uppercase mb-14">
+                Education
+            </h1>
+            <ul class="flex flex-col text-white gap-7">
+                <li>
+                    <a href="" class="flex items-center gap-2.5 text-xl text-zinc-200 hover:text-white">
+                        <ion-icon name="home"></ion-icon>
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="/fitur" class="flex items-center gap-2.5 text-xl text-zinc-200 hover:text-white">
+                        <ion-icon name="apps"></ion-icon>
+                        Fitur
+                    </a>
+                </li>
+                <li>
+                    <a href="/profile" class="flex items-center gap-2.5 text-xl text-zinc-200 hover:text-white">
+                        <ion-icon name="person-circle"></ion-icon>
+                        Profile
+                    </a>
+                </li>
+                <li>
+                    <a href="/about" class="flex items-center gap-2.5 text-xl text-zinc-200 hover:text-white">
+                        <ion-icon name="information-circle"></ion-icon>
+                        About Us
+                    </a>
+                </li>
+                <li>
+                    <button type="button" id="btnLogout" class="flex items-center gap-2.5 text-xl text-zinc-200 hover:text-white">
+                        <ion-icon name="exit"></ion-icon>
+                        Exit
+                    </button>
+                </li>
+            </ul>
+            <button type="button" id="btnBackward" class="absolute bottom-7 left-7 flex items-center gap-2.5 text-xl text-zinc-200 hover:text-white">
+        <ion-icon name="chevron-back-circle" class="my-auto"></ion-icon>
+      </button>
+      <button type="button" id="btnForward" class="absolute bottom-7 right-7 flex items-center gap-2.5 text-xl text-zinc-200 hover:text-white">
+        <ion-icon name="chevron-forward-circle" class="my-auto"></ion-icon>
+      </button>
+        </aside>
+        <section class="ml-64 p-10 w-full">
+            <h1 class="text-5xl text-center font-extrabold uppercase text-blue-800 mb-7">
+                Grade Result
+            </h1>
+            <div class="bg-blue-700 rounded-xl p-5">
+                <h1 class="text-2xl text-center font-extrabold uppercase text-zinc-50">
+                    Result Prediction
+                </h1>
+                <div class="p-3 w-full">
+                    <table class="table-auto w-full rounded-lg overflow-hidden outline outline-gray-200 shadow-md">
+                        <thead>
+                            <tr class="bg-blue-700">
+                                <th scope="col" class="p-2 text-zinc-50">Name</th>
+                                <th scope="col" class="p-2 text-zinc-50">Age</th>
+                                <th scope="col" class="p-2 text-zinc-50">Total SEM</th>
+                                <th scope="col" class="p-2 text-zinc-50">Average CGPA</th>
+                                <th scope="col" class="p-2 text-zinc-50">Final CGPA</th>
+                                <th scope="col" class="p-2 text-zinc-50">Grade</th>
+                            </tr>
+                        </thead>
+                        <tbody class="t-body">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js" integrity="sha512-b94Z6431JyXY14iSXwgzeZurHHRNkLt9d6bAHt7BZT38eqV+GyngIi/tVye4jBKPYQ2lBdRs0glww4fmpuLRwA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+    <script>
+            const tBody = document.querySelector('.t-body');
+            const fetchData = async () => {
+                try{
+                    const res = await axios.get("http://localhost:3001/data/all");
+                    console.log(res.data)
+                    res.data.data.map((rowData) => {
+                        const tr = document.createElement('tr')
+                        tr.classList.add("odd:bg-white", "even:bg-zinc-50")
+
+                        const trName = document.createElement("td");
+                        trName.classList.add("p-2", "text-zinc-900", "text-center");
+                        trName.textContent = rowData.name;
+
+                        const trAge = document.createElement("td");
+                        trAge.classList.add("p-2", "text-zinc-900", "text-center");
+                        trAge.textContent = rowData.age;
+
+                        const trTotSem = document.createElement("td");
+                        trTotSem.classList.add("p-2", "text-zinc-900", "text-center");
+                        trTotSem.textContent = rowData.total_semesters;
+
+                        const trAvgG = document.createElement("td");
+                        trAvgG.classList.add("p-2", "text-zinc-900", "text-center");
+                        trAvgG.textContent = rowData.average_gpa;
+
+                        const trFinalG = document.createElement("td");
+                        trFinalG.classList.add("p-2", "text-zinc-900", "text-center");
+                        trFinalG.textContent = rowData.final_gpa;
+
+                        const trFail = document.createElement("td");
+                        trFail.classList.add("p-2", "text-zinc-900", "text-center");
+                        trFail.textContent = rowData.result;
+
+                        tr.appendChild(trName);
+                        tr.appendChild(trAge);
+                        tr.appendChild(trTotSem);
+                        tr.appendChild(trAvgG);
+                        tr.appendChild(trFinalG);
+                        tr.appendChild(trFail);
+
+                        tBody.appendChild(tr);
+                    })
+                }catch(e){
+                    console.log(e.message)
+                }
+        }
+        fetchData();
+    </script>
+</body>
+</html>

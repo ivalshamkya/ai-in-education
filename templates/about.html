@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="antialiased overflow-x-hidden">
+  <main class="flex">
+    <aside class="fixed left-0 top-0 h-screen bg-blue-700 py-7 px-7">
+      <h1 class="text-white text-4xl font-extrabold uppercase">Dental</h1>
+      <h1 class="text-white text-4xl font-extrabold uppercase mb-14">
+        Education
+      </h1>
+      <ul class="flex flex-col text-white gap-7">
+        <li>
+          <a href="" class="flex items-center gap-2.5 text-xl text-zinc-200 hover:text-white">
+            <ion-icon name="home"></ion-icon>
+            Home
+          </a>
+        </li>
+        <li>
+          <a href="/fitur" class="flex items-center gap-2.5 text-xl text-zinc-200 hover:text-white">
+            <ion-icon name="apps"></ion-icon>
+            Fitur
+          </a>
+        </li>
+        <li>
+          <a href="/profile" class="flex items-center gap-2.5 text-xl text-zinc-200 hover:text-white">
+            <ion-icon name="person-circle"></ion-icon>
+            Profile
+          </a>
+        </li>
+        <li>
+          <a href="/about" class="flex items-center gap-2.5 text-xl text-white font-bold">
+            <ion-icon name="information-circle"></ion-icon>
+            About Us
+          </a>
+        </li>
+        <li>
+          <button type="button" id="btnLogout" class="flex items-center gap-2.5 text-xl text-zinc-200 hover:text-white">
+            <ion-icon name="exit"></ion-icon>
+            Exit
+          </button>
+        </li>
+      </ul>
+      <button type="button" id="btnBackward" class="absolute bottom-7 left-7 flex items-center gap-2.5 text-xl text-zinc-200 hover:text-white">
+        <ion-icon name="chevron-back-circle" class="my-auto"></ion-icon>
+      </button>
+      <button type="button" id="btnForward" class="absolute bottom-7 right-7 flex items-center gap-2.5 text-xl text-zinc-200 hover:text-white">
+        <ion-icon name="chevron-forward-circle" class="my-auto"></ion-icon>
+      </button>
+    </aside>
+    <section class="ml-64 p-10">
+      <h1 class="text-5xl text-center font-extrabold uppercase text-blue-800 mb-7">
+        About Us
+      </h1>
+      <div class="p-3">
+        <p class="font-medium mb-5">
+          Hello There! <br />
+          Welcome to the Dental Education Analytics Fail Student
+          System, where innovation meets excellence in dental education! Our
+          mission is to revolutionize the way students engage with dental
+          education analytics, fostering a dynamic and supportive learning
+          environment. <br /><br />
+          At Dental Education Analytics Fail Student System, we
+          understand the challenges students face in navigating the
+          complexities of dental education. That's why we've crafted a
+          cutting-edge system designed to empower students with insightful
+          analytics that go beyond conventional metrics. We believe that by
+          providing comprehensive data and personalized feedback, we can
+          enhance the learning experience and contribute to the success of
+          future dental professionals.
+        </p>
+
+        <div>
+          <h1 class="text-5xl text-center font-extrabold uppercase text-blue-800 mb-7">
+            Our Team
+          </h1>
+          <div class="flex justify-center gap-7">
+            <div>
+              <div class="bg-black w-40 h-40 overflow-hidden rounded-xl mb-3">
+                <img class="object-center object-cover"
+                  src="/img/FARAH FAUZIAH.jpg" alt="" />
+              </div>
+              <h1 class="uppercase text-sm text-center font-bold text-blue-700">Farah Fauziah</h1>
+            </div>
+            <div>
+              <div class="bg-black w-40 h-40 overflow-hidden rounded-xl mb-3">
+                <img class="object-center object-cover"
+                  src="/img/SITI NABILAH.jpg" alt="" />
+              </div>
+              <h1 class="uppercase text-sm text-center font-bold text-blue-700">Siti Nabilah</h1>
+            </div>
+            <div>
+              <div class="bg-black w-40 h-40 overflow-hidden rounded-xl mb-3">
+                <img class="object-center object-cover"
+                  src="/img/Zahwah Hazimah.jpeg" alt="" />
+              </div>
+              <h1 class="uppercase text-sm text-center font-bold text-blue-700">Zahwah Hazimah</h1>
+            </div>
+          </div>
+          <a href="#" class="flex justify-center mt-7">
+            <button class="w-96 uppercase bg-blue-800 py-3 font-bold text-white rounded-lg hover:bg-blue-900">Watch
+              Video</button>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>

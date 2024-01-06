@@ -1,0 +1,13 @@
+Flask
+flask_cors
+joblib
+Keras
+python-dotenv
+PyJWT
+catboost
+flask-session
+flask-cors
+requests
+pymongo
+bcrypt
+flask-pymongo
