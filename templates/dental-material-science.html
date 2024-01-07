@@ -65,16 +65,16 @@
                             class="min-w-[28rem] w-full text-sm py-4 px-4 bg-zinc-200 rounded-full input-name " placeholder="Name"
                             required />
                         <input type="text" name="anatomy"
-                            class="min-w-[28rem] w-full text-sm py-4 px-4 bg-zinc-200 rounded-full input-age" placeholder="Anatomy Mark"
+                            class="min-w-[28rem] w-full text-sm py-4 px-4 bg-zinc-200 rounded-full input-anatomy" placeholder="Anatomy Mark"
                             required />
                         <input type="text" name="physiology"
-                            class="min-w-[28rem] w-full text-sm py-4 px-4 bg-zinc-200 rounded-full input-age" placeholder="Physiology Mark"
+                            class="min-w-[28rem] w-full text-sm py-4 px-4 bg-zinc-200 rounded-full input-physiology" placeholder="Physiology Mark"
                             required />
                         <input type="text" name="biochemistry"
-                            class="min-w-[28rem] w-full text-sm py-4 px-4 bg-zinc-200 rounded-full input-age" placeholder="Biochemistry Mark"
+                            class="min-w-[28rem] w-full text-sm py-4 px-4 bg-zinc-200 rounded-full input-biochemistry" placeholder="Biochemistry Mark"
                             required />
                         <input type="text" name="oralbiology"
-                            class="min-w-[28rem] w-full text-sm py-4 px-4 bg-zinc-200 rounded-full input-age" placeholder="Oral Biology Mark"
+                            class="min-w-[28rem] w-full text-sm py-4 px-4 bg-zinc-200 rounded-full input-oralbiology" placeholder="Oral Biology Mark"
                             required />
                         <div class="flex justify-center">
                             <button id="btn-submit" class="w-full bg-blue-800 py-3 font-bold text-white uppercase rounded-lg hover:bg-blue-900 btn-submit"  >
@@ -94,19 +94,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js" integrity="sha512-b94Z6431JyXY14iSXwgzeZurHHRNkLt9d6bAHt7BZT38eqV+GyngIi/tVye4jBKPYQ2lBdRs0glww4fmpuLRwA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         const inputName = document.querySelector('.input-name');
-        const inputAge = document.querySelector('.input-age');
-        const inputTotSem = document.querySelector('.input-totsem');
-        const inputAvg = document.querySelector('.input-avg');
-        const inputFinal = document.querySelector('.input-final');
+        const inputAnatomy = document.querySelector('.input-anatomy');
+        const inputphysiology = document.querySelector('.input-physiology');
+        const inputbiochemistry = document.querySelector('.input-biochemistry');
+        const inputoralbiology = document.querySelector('.input-oralbiology');
         const btnSubmit = document.querySelector('#btn-submit');
     
         const fetchResult = async () => {
             try {
-                const result = await axios.post("{{ url_for('predict') }}", {
-                    age: inputAge.value,
-                    total_semesters: inputTotSem.value,
-                    average_gpa: inputAvg.value,
-                    final_gpa: inputFinal.value
+                const result = await axios.post("{{ url_for('dental_material_science_predict') }}", {
+                    anatomy: inputAnatomy.value,
+                    physiology: inputphysiology.value,
+                    biochemistry: inputbiochemistry.value,
+                    oralbiology: inputoralbiology.value
                 });
                 return result.data;
             } catch (error) {
@@ -116,15 +116,12 @@
     
         const saveData = async (data) => {
             try {
-                const uriParam = new URL(window.location.href)
-                const name = uriParam.searchParams.get("id")
-                await axios.post("http://localhost:3001/data/save", {
-                    age: inputAge.value,
-                    total_semesters: inputTotSem.value,
-                    average_gpa: inputAvg.value,
-                    final_gpa: inputFinal.value,
-                    id_lecturer: name,
+                await axios.post("{{ url_for('dental_material_science_save') }}", {
                     name: inputName.value,
+                    anatomy: inputAnatomy.value,
+                    physiology: inputphysiology.value,
+                    biochemistry: inputbiochemistry.value,
+                    oralbiology: inputoralbiology.value,
                     result: data.prediction
                 });
 
@@ -136,7 +133,7 @@
                     timerProgressBar: true,
                     showConfirmButton: false
                 }).then(() => {
-                    window.location.href = "/repeat-paper/result?id="+ name;
+                    window.location.href = "{{ url_for('dental_material_science_result') }}";
                 });
             } catch (error) {
                 Swal.fire({
@@ -152,7 +149,7 @@
         const handleSubmit = async (e) => {
             e.preventDefault();
     
-            if (!inputAge.value || !inputTotSem.value || !inputAvg.value || !inputFinal.value || !inputName.value) {
+            if (!inputAnatomy.value || !inputphysiology.value || !inputbiochemistry.value || !inputoralbiology.value || !inputName.value) {
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",

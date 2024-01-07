@@ -12,5 +12,5 @@ pip install -r requirements.txt
 python app.py
 ```
 
-3. Setelah muncul ` * Running on http://127.0.0.1:5000`.Lalu copy dan buka pada browser url tersebut. 
-*catatan: port bisa saja berbeda dari `:5000`
+3. Setelah muncul ` * Running on http://127.0.0.1:7001`.Lalu copy dan buka pada browser url tersebut. 
+*catatan: port bisa saja berbeda dari `:7001`

@@ -102,7 +102,7 @@
     
         const fetchResult = async () => {
             try {
-                const result = await axios.post("{{ url_for('predict_physiology_route') }}", {
+                const result = await axios.post("{{ url_for('anatomy_mark_predict') }}", {
                     age: inputAge.value,
                     total_semesters: inputTotSem.value,
                     average_gpa: inputAvg.value,
@@ -116,14 +116,11 @@
     
         const saveData = async (data) => {
             try {
-                const uriParam = new URL(window.location.href)
-                const name = uriParam.searchParams.get("id")
-                await axios.post("http://localhost:3001/data/save", {
+                await axios.post("{{ url_for('anatomy_mark_save') }}", {
                     age: inputAge.value,
                     total_semesters: inputTotSem.value,
                     average_gpa: inputAvg.value,
                     final_gpa: inputFinal.value,
-                    id_lecturer: name,
                     name: inputName.value,
                     result: data.prediction
                 });
@@ -136,7 +133,7 @@
                     timerProgressBar: true,
                     showConfirmButton: false
                 }).then(() => {
-                    window.location.href = "/anatomy-mark/result?id="+ name;
+                    window.location.href = "{{ url_for('anatomy_result') }}";
                 });
             } catch (error) {
                 Swal.fire({

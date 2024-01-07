@@ -11,3 +11,5 @@ requests
 pymongo
 bcrypt
 flask-pymongo
+flask-bcrypt
+flask-login

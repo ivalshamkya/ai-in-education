@@ -117,7 +117,6 @@
     
         const saveData = async (data) => {
             try {
-                const uriParam = new URL(window.location.href)
                 await axios.post("{{ url_for('repeat_paper_save') }}", {
                     name: inputName.value,
                     age: inputAge.value,
@@ -135,7 +134,7 @@
                     timerProgressBar: true,
                     showConfirmButton: false
                 }).then(() => {
-                    window.location.href = "/repeat-paper/result?id="+ name;
+                    window.location.href = "{{ url_for('repeat_paper_result') }}";
                 });
             } catch (error) {
                 Swal.fire({

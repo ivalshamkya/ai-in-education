@@ -74,6 +74,16 @@
                             </tr>
                         </thead>
                         <tbody class="t-body">
+                            {% for row in data %}
+                                <tr class="{{ loop.cycle('odd:bg-white', 'even:bg-zinc-50') }}">
+                                    <td class="p-2 text-zinc-900 text-center">{{ row.name }}</td>
+                                    <td class="p-2 text-zinc-900 text-center">{{ row.age }}</td>
+                                    <td class="p-2 text-zinc-900 text-center">{{ row.total_semesters }}</td>
+                                    <td class="p-2 text-zinc-900 text-center">{{ row.average_gpa }}</td>
+                                    <td class="p-2 text-zinc-900 text-center">{{ row.final_gpa }}</td>
+                                    <td class="p-2 text-zinc-900 text-center">{{ row.result }}</td>
+                                </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
@@ -86,7 +96,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
-    <script>
+    <!-- <script>
             const tBody = document.querySelector('.t-body');
             const fetchData = async () => {
                 try{
@@ -134,6 +144,6 @@
                 }
         }
         fetchData();
-    </script>
+    </script> -->
 </body>
 </html>

@@ -1,15 +1,10 @@
-import bson
+import os
+from pymongo import MongoClient
 
-from flask import current_app, g
-from werkzeug.local import LocalProxy
-from flask_pymongo import PyMongo
-
+MONGO_URI = os.environ.get('MONGO_URI')
 
 def get_db():
-    db = getattr(g, "_database", None)
-
-    if db is None:
-
-        db = g._database = PyMongo(current_app).db
+    mongo = MongoClient(MONGO_URI)
+    db = mongo['ai_in_education']
        
     return db

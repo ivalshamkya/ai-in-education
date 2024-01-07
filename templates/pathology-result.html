@@ -74,6 +74,16 @@
                             </tr>
                         </thead>
                         <tbody class="t-body">
+                            {% for row in data %}
+                                <tr class="{{ loop.cycle('odd:bg-white', 'even:bg-zinc-50') }}">
+                                    <td class="p-2 text-zinc-900 text-center">{{ row.name }}</td>
+                                    <td class="p-2 text-zinc-900 text-center">{{ row.final_gpa }}</td>
+                                    <td class="p-2 text-zinc-900 text-center">{{ row.anatomy }}</td>
+                                    <td class="p-2 text-zinc-900 text-center">{{ row.biochemistry }}</td>
+                                    <td class="p-2 text-zinc-900 text-center">{{ row.oralbiology }}</td>
+                                    <td class="p-2 text-zinc-900 text-center">{{ row.result }}</td>
+                                </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
@@ -85,55 +95,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js" integrity="sha512-b94Z6431JyXY14iSXwgzeZurHHRNkLt9d6bAHt7BZT38eqV+GyngIi/tVye4jBKPYQ2lBdRs0glww4fmpuLRwA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-
-    <script>
-            const tBody = document.querySelector('.t-body');
-            const fetchData = async () => {
-                try{
-                    const res = await axios.get("http://localhost:3001/data/all");
-                    console.log(res.data)
-                    res.data.data.map((rowData) => {
-                        const tr = document.createElement('tr')
-                        tr.classList.add("odd:bg-white", "even:bg-zinc-50")
-
-                        const trName = document.createElement("td");
-                        trName.classList.add("p-2", "text-zinc-900", "text-center");
-                        trName.textContent = rowData.name;
-
-                        const trAge = document.createElement("td");
-                        trAge.classList.add("p-2", "text-zinc-900", "text-center");
-                        trAge.textContent = rowData.age;
-
-                        const trTotSem = document.createElement("td");
-                        trTotSem.classList.add("p-2", "text-zinc-900", "text-center");
-                        trTotSem.textContent = rowData.total_semesters;
-
-                        const trAvgG = document.createElement("td");
-                        trAvgG.classList.add("p-2", "text-zinc-900", "text-center");
-                        trAvgG.textContent = rowData.average_gpa;
-
-                        const trFinalG = document.createElement("td");
-                        trFinalG.classList.add("p-2", "text-zinc-900", "text-center");
-                        trFinalG.textContent = rowData.final_gpa;
-
-                        const trFail = document.createElement("td");
-                        trFail.classList.add("p-2", "text-zinc-900", "text-center");
-                        trFail.textContent = rowData.result;
-
-                        tr.appendChild(trName);
-                        tr.appendChild(trAge);
-                        tr.appendChild(trTotSem);
-                        tr.appendChild(trAvgG);
-                        tr.appendChild(trFinalG);
-                        tr.appendChild(trFail);
-
-                        tBody.appendChild(tr);
-                    })
-                }catch(e){
-                    console.log(e.message)
-                }
-        }
-        fetchData();
-    </script>
 </body>
 </html>
