@@ -14,4 +14,4 @@ flask-pymongo
 flask-bcrypt
 flask-login
 scikit-learn
-gunicorn==20.0.4
+uvicorn
