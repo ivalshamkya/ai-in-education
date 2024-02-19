@@ -1,4 +1,4 @@
-Flask
+Flask=3.0.0
 flask_cors
 joblib
 Keras
@@ -14,4 +14,3 @@ flask-pymongo
 flask-bcrypt
 flask-login
 scikit-learn
-gunicorn

@@ -1,2 +1,5 @@
 flask_session
 .env
+
+.DS_Store
+**/.DS_Store

@@ -75,7 +75,6 @@ def register():
         name = request.form.get('name')
         password = request.form.get('password')
 
-        # Check if idLecturer already exists
         users_collection = DB.users
         existing_user = users_collection.find_one({'idLecturer': id_lecturer})
 
@@ -112,7 +111,7 @@ def login():
         users_collection = DB.users
         user_data = users_collection.find_one({'idLecturer': id_lecturer})
 
-        if user_data and bcrypt.check_password_hash(password.encode('utf-8'), bytes(user_data['password'], 'utf-8')):
+        if user_data and bcrypt.check_password_hash(bytes(user_data['password'], 'utf-8'), password.encode('utf-8')):
             login_user(User(id_lecturer, user_data['name'], user_data['password']))
             return redirect(f"/fitur")
         else:
@@ -154,7 +153,6 @@ def fitur():
     if not is_user_authenticated:
         return redirect('/login')
     return render_template('fitur.html')
-
 
 
 ########################## REPEAT PAPER ######################################
@@ -729,4 +727,4 @@ def dental_material_science_save():
 ##########################################################################
  
 if __name__ == '__main__':
-    app.run(debug=True, port=7001)
+    app.run(debug=True, port=PORT)
